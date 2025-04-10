@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  transcriptor:
+    build: .
+    container_name: transcriptor-whisper
+    ports:
+      - "8010:8000"
+    volumes:
+      - ./app:/app/app
+    restart: unless-stopped
