@@ -9,6 +9,10 @@ app = FastAPI()
 UPLOAD_DIR = "/tmp/audio"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+@app.get("/")
+def read_root():
+    return {"message": "API activa"}
+
 @app.post("/transcribe/")
 async def transcribe(file: UploadFile = File(...)):
     file_path = os.path.join(UPLOAD_DIR, file.filename)
