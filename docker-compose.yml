@@ -5,7 +5,7 @@ services:
     build: .
     container_name: transcriptor-whisper
     ports:
-      - "8010:8000"
-    volumes:
-      - ./app:/app/app
-    restart: unless-stopped
+      - "8010:8010"
+    #volumes:
+    #  - ./app:/app/app
+    #restart: unless-stopped

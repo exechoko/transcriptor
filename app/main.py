@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 import shutil
 import os
+import traceback
 from app.transcribir import transcribir_audio
 
 app = FastAPI()
@@ -15,13 +16,25 @@ def read_root():
 
 @app.post("/transcribe/")
 async def transcribe(file: UploadFile = File(...)):
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    try:
+        print(f"📥 Recibiendo archivo: {file.filename}")
+        file_path = os.path.join(UPLOAD_DIR, file.filename)
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
 
-    resultado = transcribir_audio(file_path)
+        print(f"💾 Archivo guardado en: {file_path}")
 
-    os.remove(file_path)
+        resultado = transcribir_audio(file_path)
 
-    return JSONResponse(content=resultado)
+        print(f"📝 Resultado de transcripción: {resultado}")
+
+        os.remove(file_path)
+        print(f"🧹 Archivo eliminado: {file_path}")
+
+        return JSONResponse(content=resultado)
+
+    except Exception as e:
+        print("❌ Ocurrió un error en /transcribe/:", e)
+        traceback.print_exc()
+        return JSONResponse(content={"error": str(e)}, status_code=500)
