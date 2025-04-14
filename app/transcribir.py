@@ -7,7 +7,7 @@ import time
 logging.basicConfig(level=logging.INFO)
 
 try:
-    modelo = whisper.load_model("base")
+    modelo = whisper.load_model("small")
     logging.info("Modelo Whisper cargado exitosamente")
 except Exception as e:
     logging.error(f"Error cargando el modelo: {str(e)}")
