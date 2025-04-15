@@ -10,8 +10,8 @@ Este proyecto es una API simple construida con FastAPI y OpenAI Whisper (modo CP
 ### 1. Clonar el repositorio (o navegar al directorio del proyecto)
 
 ```bash
-git clone https://tu-repo
-cd tu-repo
+https://github.com/exechoko/transcriptor.git
+cd transcriptor
 ```
 
 ### 2. Construir e iniciar los contenedores
