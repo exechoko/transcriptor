@@ -55,9 +55,10 @@ Sube un archivo de audio y devuelve la transcripción.
 
 #### Ejemplo con `curl`:
 ```bash
-curl -X POST "http://localhost:8000/transcribe/" \
-  -H "accept: application/json" \
-  -F "file=@audio_prueba.mp3"
+curl.exe -X POST "http://localhost:8010/transcribe/"
+  -H "accept: application/json"
+  -H "Content-Type: multipart/form-data"
+  -F "file=@C:/Users/Usuario/Desktop/saludo.wav"
 ```
 
 #### Respuesta esperada:
