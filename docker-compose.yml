@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   transcriptor:
-    build: .
+    build:
+      context: .
+    image: transcriptor-whisper-img
     container_name: transcriptor-whisper
     ports:
       - "8010:8010"
